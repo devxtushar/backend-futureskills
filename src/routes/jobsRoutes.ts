@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import { authenticateToken } from "../configs/authMiddleware";
 import {
   handleGetJobs,
   handlePostJobs,
@@ -12,8 +12,8 @@ const router = Router();
 router
   .route("/")
   .get(handleGetJobs)
-  .post(handlePostJobs)
-  .put(handlePutJobs)
-  .delete(handleDeleteJobs);
+  .post(authenticateToken, handlePostJobs)
+  .put(authenticateToken, handlePutJobs)
+  .delete(authenticateToken, handleDeleteJobs);
 
 export default router;

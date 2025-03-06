@@ -45,6 +45,7 @@ export const handlePutJobs = async (req: Request, res: Response) => {
       res
         .status(404)
         .send({ message: "Job not found, Invalid Job Id!", success: false });
+      return;
     } else {
       res.status(200).send({
         message: "Job updated successfully",
@@ -68,11 +69,13 @@ export const handleDeleteJobs = async (req: Request, res: Response) => {
         message: "Job Id is required",
         success: false,
       });
+      return;
     }
 
     const deleteJob = await jobModel.findByIdAndDelete(_id);
     if (!deleteJob) {
       res.status(404).send({ message: "Invalid Job Id!", success: false });
+      return;
     } else {
       res.status(200).send({
         message: "Job deleted successfully",

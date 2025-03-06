@@ -7,10 +7,11 @@ export const handleLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(401).send({
+      res.status(404).send({
         message: "Email/Password is required",
         success: false,
       });
+      return;
     }
 
     const findUser = await userModel.findOne({ email });
@@ -18,12 +19,13 @@ export const handleLogin = async (req: Request, res: Response) => {
       res.status(404).send({ message: "Email not found", success: false });
     } else {
       const checkPassword = await comparePassword(password, findUser.password);
-
+      console.log(checkPassword, "check");
       if (!checkPassword) {
         res.status(404).send({
           message: "Invalid password!",
           success: false,
         });
+        return;
       }
 
       const payload = {
@@ -53,7 +55,7 @@ export const handleRegister = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(400).send({
+      res.status(404).send({
         message: "Email/Password is required",
         success: false,
       });
@@ -65,6 +67,7 @@ export const handleRegister = async (req: Request, res: Response) => {
         message: "Email already registered!Login now",
         success: false,
       });
+      return;
     } else {
       const hashedPassword = await hashPassword(password);
 

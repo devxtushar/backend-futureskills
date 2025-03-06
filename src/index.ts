@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use("/auth", authRoutes);
-app.use("/jobs", authenticateToken, jobsRoutes);
+app.use("/jobs", jobsRoutes);
 app.use("/applications", authenticateToken, applicationRoutes);
 
 app.get("/", (req: Request, res: Response) => {

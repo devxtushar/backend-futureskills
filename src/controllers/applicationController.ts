@@ -8,6 +8,7 @@ export const handlePostApplication = async (req: Request, res: Response) => {
     const { resumeUrl, candidateId, jobId } = req.body;
     if (!resumeUrl || !candidateId || !jobId) {
       res.status(400).send({ message: "Fields are missing!", success: true });
+      return;
     } else {
       var headers = new Headers();
       headers.append("apikey", process.env.PARSE_RESUMEAPI || "");
@@ -73,6 +74,7 @@ export const handleGetOnlyApplication = async (req: Request, res: Response) => {
         message: "Candidate Id is required*",
         success: false,
       });
+      return;
     }
     const candidateId = id;
     const data = await applicationModel.find({ candidateId });
@@ -81,7 +83,6 @@ export const handleGetOnlyApplication = async (req: Request, res: Response) => {
       success: true,
       data,
     });
-    res.send({ message: "Routes created" });
   } catch (error) {
     console.log("error coming from get only application");
     res.status(500).send({
