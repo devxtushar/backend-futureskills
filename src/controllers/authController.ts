@@ -7,7 +7,7 @@ export const handleLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(400).send({
+      res.status(401).send({
         message: "Email/Password is required",
         success: false,
       });

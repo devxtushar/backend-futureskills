@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use("/auth", authenticateToken, authRoutes);
+app.use("/auth", authRoutes);
 app.use("/jobs", authenticateToken, jobsRoutes);
 app.use("/applications", authenticateToken, applicationRoutes);
 
