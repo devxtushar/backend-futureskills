@@ -2,6 +2,10 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser = require("body-parser");
+import authRoutes from "./routes/authRoutes";
+import jobsRoutes from "./routes/jobsRoutes";
+import applicationRoutes from "./routes/applicationRoutes";
+
 dotenv.config();
 
 const app: Express = express();
@@ -11,6 +15,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+app.use("/auth", authRoutes);
+app.use("/jobs", jobsRoutes);
+app.use("/applications", applicationRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).send({
