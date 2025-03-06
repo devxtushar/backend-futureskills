@@ -62,9 +62,9 @@ export const handlePutJobs = async (req: Request, res: Response) => {
 };
 export const handleDeleteJobs = async (req: Request, res: Response) => {
   try {
-    const { _id } = req.body;
+    const { id } = req.params;
 
-    if (!_id) {
+    if (!id) {
       res.status(400).send({
         message: "Job Id is required",
         success: false,
@@ -72,7 +72,7 @@ export const handleDeleteJobs = async (req: Request, res: Response) => {
       return;
     }
 
-    const deleteJob = await jobModel.findByIdAndDelete(_id);
+    const deleteJob = await jobModel.findByIdAndDelete({ _id: id });
     if (!deleteJob) {
       res.status(404).send({ message: "Invalid Job Id!", success: false });
       return;

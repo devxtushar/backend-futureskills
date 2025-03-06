@@ -13,7 +13,8 @@ router
   .route("/")
   .get(handleGetJobs)
   .post(authenticateToken, handlePostJobs)
-  .put(authenticateToken, handlePutJobs)
-  .delete(authenticateToken, handleDeleteJobs);
+  .put(authenticateToken, handlePutJobs);
+
+router.delete("/:id", authenticateToken, handleDeleteJobs);
 
 export default router;
