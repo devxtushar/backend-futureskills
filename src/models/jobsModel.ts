@@ -3,7 +3,6 @@ import { Jobs } from "../interfaces/jobs";
 
 const jobsSchema: Schema = new Schema(
   {
-    id: { type: mongoose.Types.ObjectId, required: true, unique: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
     status: { type: String, enum: ["active", "inactive"], default: "active" },
@@ -13,4 +12,4 @@ const jobsSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.model<Jobs>("fsjobs", jobsSchema);
+export const jobModel = mongoose.model<Jobs>("fsjobs", jobsSchema);

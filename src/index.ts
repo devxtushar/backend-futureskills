@@ -5,11 +5,13 @@ import bodyParser = require("body-parser");
 import authRoutes from "./routes/authRoutes";
 import jobsRoutes from "./routes/jobsRoutes";
 import applicationRoutes from "./routes/applicationRoutes";
+import { connectDB } from "./configs/dbConfigs";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 5000;
+connectDB();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
