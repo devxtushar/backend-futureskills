@@ -82,7 +82,7 @@ export const handleRegister = async (req: Request, res: Response) => {
       });
     }
   } catch (error) {
-    console.log("error coming from register");
+    console.log("error coming from register", error);
     res.status(500).send({
       message: "Something went wrong while register!",
       success: false,
