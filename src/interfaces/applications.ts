@@ -4,9 +4,6 @@ export interface Applications extends Document {
   candidateId: string;
   jobId: string;
   resumeUrl: string;
-  parsedfields: {
-    key: string;
-    value: string;
-  }[];
+  parsedfields: Object;
   status: "Review" | "Accepted" | "Rejected";
 }

@@ -6,12 +6,12 @@ const applicationSchema: Schema = new Schema(
     candidateId: { type: String, required: true },
     jobId: { type: String, required: true },
     resumeUrl: { type: String, required: true },
-    parsedfields: [
-      {
-        key: { type: String, default: "" },
-        value: { type: String, default: "" },
-      },
-    ],
+    parsedfields: { type: Object, default: {} },
+    status: {
+      type: String,
+      enum: ["Review", "Accepted", "Rejected"],
+      default: "Review",
+    },
   },
   {
     timestamps: true,
