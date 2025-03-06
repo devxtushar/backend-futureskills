@@ -1,4 +1,3 @@
-import { JwtPayload } from "jsonwebtoken";
 import { verifyAccessToken } from "./manageTokens";
 import { Request, Response, NextFunction } from "express";
 

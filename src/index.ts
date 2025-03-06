@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes";
 import jobsRoutes from "./routes/jobsRoutes";
 import applicationRoutes from "./routes/applicationRoutes";
 import { connectDB } from "./configs/dbConfigs";
+import { authenticateToken } from "./configs/authMiddleware";
 
 dotenv.config();
 
@@ -17,9 +18,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use("/auth", authRoutes);
-app.use("/jobs", jobsRoutes);
-app.use("/applications", applicationRoutes);
+app.use("/auth", authenticateToken, authRoutes);
+app.use("/jobs", authenticateToken, jobsRoutes);
+app.use("/applications", authenticateToken, applicationRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).send({
