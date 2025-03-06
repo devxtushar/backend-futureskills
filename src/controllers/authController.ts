@@ -37,6 +37,8 @@ export const handleLogin = async (req: Request, res: Response) => {
         message: "Login Successfully",
         success: true,
         accessToken,
+        email: findUser.email,
+        role: findUser.role,
       });
     }
   } catch (error) {
