@@ -41,6 +41,7 @@ export const handleLogin = async (req: Request, res: Response) => {
         accessToken,
         email: findUser.email,
         role: findUser.role,
+        id: findUser._id,
       });
     }
   } catch (error) {
